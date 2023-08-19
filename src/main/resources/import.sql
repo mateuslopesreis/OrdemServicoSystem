@@ -1,1 +1,1 @@
-INSERT INTO TB_CLIENTE (nome, email, telefone, rua, bairro, numero, login, senha) VALUES ('Maria Aparecida', 'maria@gmail.com', '(67) 98888-5555', 'Av. Dourados', 'Centro, Naviraí-MS', '123', 'luffy', 'onepiece');
+INSERT INTO TB_CLIENTE (nome, email, rua, bairro, numero, login, senha) VALUES ('Maria Aparecida', 'maria@gmail.com', 'Av. Dourados', 'Centro, Naviraí-MS', '123', 'luffy', 'onepiece');
