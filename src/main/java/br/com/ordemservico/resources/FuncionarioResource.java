@@ -15,31 +15,36 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.ordemservico.dto.ClienteDTO;
-import br.com.ordemservico.services.ClienteService;
+import br.com.ordemservico.dto.FuncionarioDTO;
+import br.com.ordemservico.services.FuncionarioService;
 
 @RestController
-@RequestMapping(value= "/cliente")
-public class ClienteResource {
-
-	@Autowired
+@RequestMapping(value= "/funcionarios")
+public class FuncionarioResource {
 	
-	private ClienteService service;
+@Autowired
+	
+	private FuncionarioService service;
 	
 	@GetMapping()
-	public ResponseEntity<List<ClienteDTO>>findAll(){
-		List<ClienteDTO> list = service.findAll();
+	public ResponseEntity<List<FuncionarioDTO>>findAll(){
+		List<FuncionarioDTO> list = service.findAll();
 		return ResponseEntity.ok().body(list);
 	}
 	
 	@GetMapping(value= "/{id}")
-	public ResponseEntity<ClienteDTO>findById(@PathVariable Long id){
-		ClienteDTO dto = service.findById(id);
+	public ResponseEntity<FuncionarioDTO>findById(@PathVariable Long id){
+		FuncionarioDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
 	}
 	
+	
+	
+	
+	
+	
 	@PostMapping
-	public ResponseEntity<ClienteDTO> insert(@RequestBody ClienteDTO dto){
+	public ResponseEntity<FuncionarioDTO> insert(@RequestBody FuncionarioDTO dto){
 		dto = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
@@ -52,7 +57,7 @@ public class ClienteResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<ClienteDTO> Update(@PathVariable Long id, @RequestBody ClienteDTO dto){
+	public ResponseEntity<FuncionarioDTO> Update(@PathVariable Long id, @RequestBody FuncionarioDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}
@@ -64,4 +69,5 @@ public class ClienteResource {
 	}
 	
 	
+
 }
