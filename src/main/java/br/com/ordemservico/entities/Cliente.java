@@ -1,12 +1,15 @@
 package br.com.ordemservico.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +27,10 @@ public class Cliente implements Serializable{
 	private String numero;
 	private String login;
 	private String senha;
+	
+	
+	@OneToMany(mappedBy = "cliente")
+	private List<OrdemServico> list = new ArrayList<>();
 	
 	public Cliente() {}
 
@@ -103,6 +110,17 @@ public class Cliente implements Serializable{
 		this.senha = senha;
 	}
 	
+	
+	
+	
+	public List<OrdemServico> getList() {
+		return list;
+	}
+
+	public void setList(List<OrdemServico> list) {
+		this.list = list;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
