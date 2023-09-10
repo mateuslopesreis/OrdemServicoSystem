@@ -1,9 +1,8 @@
 package br.com.ordemservico.dto;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.ordemservico.entities.Cliente;
 import br.com.ordemservico.entities.OrdemServico;
@@ -17,16 +16,14 @@ public class OrdemServicoDTO implements Serializable {
 	private Long id;
 	private String titulo;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataAbertura;
 	
-	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataFechamento;
 	
 	private Integer tipoServico;
 	private Integer prioridade;
 	private Integer status;
-	private Long cliente;
+	private Cliente cliente;
 	
 	public OrdemServicoDTO() {
 		// TODO Auto-generated constructor stub
@@ -43,7 +40,7 @@ public class OrdemServicoDTO implements Serializable {
 		this.tipoServico = entity.getTipoServico().getCod();
 		this.prioridade = entity.getPrioridade().getCod();
 		this.status = entity.getStatus().getCod();
-		this.cliente = entity.getCliente().getId();
+		this.cliente = entity.getCliente();
 
 	}
 
@@ -103,11 +100,11 @@ public class OrdemServicoDTO implements Serializable {
 		this.status = status.getCod();
 	}
 
-	public Long getCliente() {
+	public Cliente getCliente() {
 		return cliente;
 	}
 
-	public void setCliente(Long cliente) {
+	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
 	

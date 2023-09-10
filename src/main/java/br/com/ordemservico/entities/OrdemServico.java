@@ -1,6 +1,7 @@
 package br.com.ordemservico.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -42,15 +43,13 @@ public class OrdemServico implements Serializable {
 	private Cliente cliente;
 	
 	public OrdemServico() {
-		super();
 		this.setDataAbertura(LocalDateTime.now());
-		this.setPrioridade(Prioridade.BAIXA);
-		this.setStatus(Status.ABERTO);
+		//this.setPrioridade(Prioridade.BAIXA);
+		//this.setStatus(Status.ABERTO);
 	}
 
 	public OrdemServico(Long id, String titulo, 
 			TipoServico tipoServico, Prioridade prioridade, Status status, Cliente cliente) {
-		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.setDataAbertura(LocalDateTime.now());

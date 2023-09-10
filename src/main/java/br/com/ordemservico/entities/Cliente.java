@@ -25,25 +25,20 @@ public class Cliente implements Serializable{
 	private String rua;
 	private String bairro;
 	private String numero;
-	private String login;
-	private String senha;
 	
 	
-	@OneToMany(mappedBy = "cliente")
-	private List<OrdemServico> list = new ArrayList<>();
+	
 	
 	public Cliente() {}
 
-	public Cliente(Long id, String nome, String email, String rua, String bairro, String numero, String login,
-			String senha) {
+	public Cliente(Long id, String nome, String email, String rua, String bairro, String numero) {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.rua = rua;
 		this.bairro = bairro;
 		this.numero = numero;
-		this.login = login;
-		this.senha = senha;
+		
 	}
 
 	public Long getId() {
@@ -94,32 +89,8 @@ public class Cliente implements Serializable{
 		this.numero = numero;
 	}
 
-	public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
-
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
 	
 	
-	
-	
-	public List<OrdemServico> getList() {
-		return list;
-	}
-
-	public void setList(List<OrdemServico> list) {
-		this.list = list;
-	}
 
 	@Override
 	public int hashCode() {

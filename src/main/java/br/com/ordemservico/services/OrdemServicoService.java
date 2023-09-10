@@ -40,11 +40,12 @@ public class OrdemServicoService {
 	public OrdemServicoDTO insert(OrdemServicoDTO dto) {
 		OrdemServico entity = new OrdemServico();
 		entity.setTitulo(dto.getTitulo());
-		entity.setDataAbertura(dto.getDataAbertura());
-		entity.setDataFechamento(dto.getDataFechamento());
+	//	entity.setDataAbertura(dto.getDataAbertura());
+	//	entity.setDataFechamento(dto.getDataFechamento());
 		entity.setTipoServico(dto.getTipoServico());
 		entity.setPrioridade(dto.getPrioridade());
 		entity.setStatus(dto.getStatus());
+		entity.setCliente(dto.getCliente());
 		
 		
 		entity = repository.save(entity);
@@ -64,6 +65,7 @@ public class OrdemServicoService {
 			entity.setTipoServico(dto.getTipoServico());
 			entity.setPrioridade(dto.getPrioridade());
 			entity.setStatus(dto.getStatus());
+			entity.setCliente(dto.getCliente());
 			
 			entity = repository.save(entity);
 			return new OrdemServicoDTO(entity);

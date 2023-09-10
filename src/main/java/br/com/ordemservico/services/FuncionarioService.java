@@ -51,6 +51,7 @@ public class FuncionarioService {
 		return new FuncionarioDTO(entity);
 	}
 
+	@Transactional
 	public FuncionarioDTO update(Long id, FuncionarioDTO dto) {
 		try {
 			Funcionario entity = repository.getReferenceById(id);

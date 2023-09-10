@@ -46,8 +46,6 @@ public class ClienteService {
 		entity.setRua(dto.getRua());
 		entity.setBairro(dto.getBairro());
 		entity.setNumero(dto.getNumero());
-		entity.setLogin(dto.getLogin());
-		entity.setSenha(dto.getSenha());
 		
 		entity = repository.save(entity);
 		
@@ -64,8 +62,6 @@ public class ClienteService {
 			entity.setRua(dto.getRua());
 			entity.setBairro(dto.getBairro());
 			entity.setNumero(dto.getNumero());
-			entity.setLogin(dto.getLogin());
-			entity.setSenha(dto.getSenha());
 			
 			entity = repository.save(entity);
 			return new ClienteDTO(entity);
