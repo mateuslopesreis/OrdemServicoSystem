@@ -26,14 +26,14 @@ public class OrdemServicoService {
 	public List<OrdemServicoDTO>findAll(){
 		List<OrdemServico> lista = repository.findAll();
 		
-		return lista.stream().map(x -> new OrdemServicoDTO(x)).collect(Collectors.toList());
+		return lista.stream().map(x -> new OrdemServicoDTO(x, x.getAtendimentos())).collect(Collectors.toList());
 	}
 	
 	@Transactional(readOnly = true)
 	public OrdemServicoDTO findById(Long id) {
 		Optional<OrdemServico> obj = repository.findById(id);
 		OrdemServico entity = obj.get();
-		return new OrdemServicoDTO(entity);
+		return new OrdemServicoDTO(entity, entity.getAtendimentos());
 	}
 
 	@Transactional

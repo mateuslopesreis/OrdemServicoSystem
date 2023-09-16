@@ -3,7 +3,11 @@ package br.com.ordemservico.dto;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import br.com.ordemservico.entities.Atendimento;
 import br.com.ordemservico.entities.Cliente;
 import br.com.ordemservico.entities.OrdemServico;
 import br.com.ordemservico.enums.Prioridade;
@@ -25,12 +29,31 @@ public class OrdemServicoDTO implements Serializable {
 	private Integer status;
 	private Cliente cliente;
 	
+	private List<Atendimento> atendimentos = new ArrayList<>(); 
+	
 	public OrdemServicoDTO() {
 		// TODO Auto-generated constructor stub
 	}
 
 	
 	
+	
+	public OrdemServicoDTO(Long id, String titulo, LocalDateTime dataAbertura, LocalDateTime dataFechamento,
+			Integer tipoServico, Integer prioridade, Integer status, Cliente cliente) {
+		this.id = id;
+		this.titulo = titulo;
+		this.dataAbertura = dataAbertura;
+		this.dataFechamento = dataFechamento;
+		this.tipoServico = tipoServico;
+		this.prioridade = prioridade;
+		this.status = status;
+		this.cliente = cliente;
+	}
+
+
+
+
+
 	public OrdemServicoDTO(OrdemServico entity) {
 		super();
 		this.id = entity.getId();
@@ -43,6 +66,22 @@ public class OrdemServicoDTO implements Serializable {
 		this.cliente = entity.getCliente();
 
 	}
+	
+	public OrdemServicoDTO(OrdemServico entity, List<Atendimento> atendimentos) {
+		this(entity);
+		this.atendimentos = atendimentos.stream().map(x -> new Atendimento(
+				x.getId(), x.getRelatoTecnico(), x.getFuncionario(), null))
+				.collect(Collectors.toList());
+	}
+	
+	
+	
+
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
+	}
+
+
 
 	public Long getId() {
 		return id;

@@ -3,19 +3,23 @@ package br.com.ordemservico.entities;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import br.com.ordemservico.enums.Prioridade;
 import br.com.ordemservico.enums.Status;
 import br.com.ordemservico.enums.TipoServico;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -42,6 +46,11 @@ public class OrdemServico implements Serializable {
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
 	
+	
+	@OneToMany(mappedBy = "os", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Atendimento> atendimentos;
+	
 	public OrdemServico() {
 		this.setDataAbertura(LocalDateTime.now());
 		//this.setPrioridade(Prioridade.BAIXA);
@@ -49,7 +58,7 @@ public class OrdemServico implements Serializable {
 	}
 
 	public OrdemServico(Long id, String titulo, 
-			TipoServico tipoServico, Prioridade prioridade, Status status, Cliente cliente) {
+			TipoServico tipoServico, Prioridade prioridade, Status status, Cliente cliente, List<Atendimento> atendimentos) {
 		this.id = id;
 		this.titulo = titulo;
 		this.setDataAbertura(LocalDateTime.now());
@@ -57,6 +66,12 @@ public class OrdemServico implements Serializable {
 		this.prioridade = (prioridade == null) ? 0 : prioridade.getCod();
 		this.status = (status == null) ? 0 : status.getCod();
 		this.cliente = cliente;
+		this.atendimentos = atendimentos;
+	}
+	
+
+	public List<Atendimento> getAtendimentos() {
+		return atendimentos;
 	}
 
 	public Long getId() {

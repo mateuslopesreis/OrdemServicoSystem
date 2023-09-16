@@ -1,4 +1,8 @@
 INSERT INTO TB_CLIENTE (nome, email, rua, bairro, numero) VALUES ('Maria Aparecida', 'maria@gmail.com', 'Av. Dourados', 'Centro, Naviraí-MS', '123');
+INSERT INTO TB_CLIENTE (nome, email, rua, bairro, numero) VALUES ('Monkey D. Luffy', 'luffy@gmail.com', 'Grande Line', 'Oeste Blue', '165');
+INSERT INTO TB_CLIENTE (nome, email, rua, bairro, numero) VALUES ('Roronoa Zoro', 'zoro@gmail.com', 'Grande Line', 'Norte Blue', '736');
+
+
 INSERT INTO TB_FUNCIONARIO (nome, email, telefone, perfil, login, senha) VALUES ('Sakuragi Hanamich', 'sakuragi@gmail.com', '(67) 99874-1236', 2 , 'basquetero', 'genio');
 
 
