@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ordemservico.dto.AtendimentoDTO;
+import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.ClienteDTO;
 import br.com.ordemservico.services.AtendimentoService;
 
@@ -36,6 +37,12 @@ public class AtendimentoResource {
 	public ResponseEntity<AtendimentoDTO>findById(@PathVariable Long id){
 		AtendimentoDTO dto = service.findById(id);
 		return ResponseEntity.ok().body(dto);
+	}
+	
+	@GetMapping(value = "/statustecnicosql/{status}/{nome}")
+	public ResponseEntity<List<AtendimentoStatusTecnicoDTO>> findByStatusTecnicoSQL(@PathVariable int status, @PathVariable String nome){
+		List<AtendimentoStatusTecnicoDTO> lista = service.findByStatusTecnicoSQL(status, nome);
+		return ResponseEntity.ok().body(lista);
 	}
 	
 	@PostMapping

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.AtendimentoDTO;
+import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.ClienteDTO;
 import br.com.ordemservico.entities.Atendimento;
 import br.com.ordemservico.entities.Cliente;
@@ -41,6 +42,15 @@ public class AtendimentoService {
 						));
 		return new AtendimentoDTO(entity);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<AtendimentoStatusTecnicoDTO> findByStatusTecnicoSQL(int  status, String nome){
+		return repository.findByStatusTecnicoSQL(status, nome);
+	}
+	
+	
+	
+	
 
 	public AtendimentoDTO insert(AtendimentoDTO dto) {
 		Atendimento entity = new Atendimento();
@@ -77,4 +87,6 @@ public class AtendimentoService {
 		}
 		
 	}
+
+	
 }
