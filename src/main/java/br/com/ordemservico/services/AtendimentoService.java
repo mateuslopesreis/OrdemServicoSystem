@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.ordemservico.dto.AtendimentoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.ClienteDTO;
+import br.com.ordemservico.dto.OrdemServicoTecnicoAtendimentoDTO;
 import br.com.ordemservico.entities.Atendimento;
 import br.com.ordemservico.entities.Cliente;
 import br.com.ordemservico.repositories.AtendimentoRepository;
@@ -49,7 +50,10 @@ public class AtendimentoService {
 	}
 	
 	
-	
+	@Transactional(readOnly = true)
+	public List<OrdemServicoTecnicoAtendimentoDTO> findByTecnicoAtendimentoSQL(int  status){
+		return repository.findByTecnicoAtendimentoSQL(status);
+	}
 	
 
 	public AtendimentoDTO insert(AtendimentoDTO dto) {

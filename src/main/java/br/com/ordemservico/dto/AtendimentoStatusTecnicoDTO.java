@@ -2,19 +2,35 @@ package br.com.ordemservico.dto;
 
 import java.io.Serializable;
 
+import br.com.ordemservico.entities.Cliente;
+
 public class AtendimentoStatusTecnicoDTO  implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
+	private Long id;
 	private String titulo;
+	private Integer prioridade;
+	private String cliente;
 	private String nome;
+	
 	
 	public AtendimentoStatusTecnicoDTO() {}
 
-	public AtendimentoStatusTecnicoDTO(String titulo, String nome) {
+	public AtendimentoStatusTecnicoDTO(Long id, String titulo, Integer prioridade, String cliente, String nome) {
+		this.id = id;
 		this.titulo = titulo;
+		this.cliente = cliente;
 		this.nome = nome;
+		this.prioridade = prioridade;
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitulo() {
 		return titulo;
@@ -22,6 +38,23 @@ public class AtendimentoStatusTecnicoDTO  implements Serializable {
 
 	public void setTitulo(String titulo) {
 		this.titulo = titulo;
+	}
+
+	
+	public Integer getPrioridade() {
+		return prioridade;
+	}
+
+	public void setPrioridade(Integer prioridade) {
+		this.prioridade = prioridade;
+	}
+
+	public String getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(Cliente cliente) {
+		this.cliente = cliente.getNome();
 	}
 
 	public String getNome() {

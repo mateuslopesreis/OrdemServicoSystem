@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.ordemservico.dto.AtendimentoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.ClienteDTO;
+import br.com.ordemservico.dto.OrdemServicoTecnicoAtendimentoDTO;
 import br.com.ordemservico.services.AtendimentoService;
 
 @RestController
@@ -44,6 +45,14 @@ public class AtendimentoResource {
 		List<AtendimentoStatusTecnicoDTO> lista = service.findByStatusTecnicoSQL(status, nome);
 		return ResponseEntity.ok().body(lista);
 	}
+	
+	@GetMapping(value = "/tecnicoatendimentosql/{status}")
+	public ResponseEntity<List<OrdemServicoTecnicoAtendimentoDTO>> findByTecnicoAtendimentoSQL(@PathVariable int status){
+		List<OrdemServicoTecnicoAtendimentoDTO> lista = service.findByTecnicoAtendimentoSQL(status);
+		return ResponseEntity.ok().body(lista);
+	}
+	
+	
 	
 	@PostMapping
 	public ResponseEntity<AtendimentoDTO> insert(@RequestBody AtendimentoDTO dto){
