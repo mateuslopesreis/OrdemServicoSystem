@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.ordemservico.dto.FuncionarioDTO;
 import br.com.ordemservico.entities.Funcionario;
 import br.com.ordemservico.repositories.FuncionarioRepository;
+import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -72,9 +74,8 @@ public class FuncionarioService {
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
-		}catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("O recurso com o ID"+id+" não foi localizado");
+		}catch(DataIntegrityViolationException e) {
+			throw new DataBaseException("Violação de Integridade");
 		}
-		
 	}
 }

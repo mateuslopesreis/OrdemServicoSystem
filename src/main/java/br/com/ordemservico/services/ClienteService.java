@@ -5,12 +5,14 @@ import java.util.stream.Collectors;
 
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import br.com.ordemservico.dto.ClienteDTO;
 import br.com.ordemservico.entities.Cliente;
 import br.com.ordemservico.repositories.ClienteRepository;
+import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -73,9 +75,8 @@ public class ClienteService {
 	public void delete(Long id) {
 		try {
 			repository.deleteById(id);
-		}catch(EmptyResultDataAccessException e) {
-			throw new ResourceNotFoundException("O recurso com o ID"+id+" não foi localizado");
+		}catch(DataIntegrityViolationException e) {
+			throw new DataBaseException("Violação de Integridade");
 		}
 	}
-
 }
