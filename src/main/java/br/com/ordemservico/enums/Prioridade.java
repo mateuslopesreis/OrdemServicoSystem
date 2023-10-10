@@ -20,15 +20,15 @@ public enum Prioridade {
 		return descricao;
 	}
 	
-	public static Prioridade toEnum(Integer cod) {
-		if(cod==null) {
+	public static Prioridade toEnum(Integer prioridade) {
+		if(prioridade==null) {
 			return null;
 		}
 		for(Prioridade x : Prioridade.values()) {
-			if(cod.equals(x.getCod())) {
+			if(prioridade.equals(x.getCod())) {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Prioridade inválida"+cod);
+		throw new IllegalArgumentException("Prioridade inválida"+prioridade);
 	}
 }

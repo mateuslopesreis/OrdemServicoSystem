@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.ordemservico.entities.Atendimento;
 import br.com.ordemservico.entities.Cliente;
 import br.com.ordemservico.entities.OrdemServico;
@@ -20,8 +22,9 @@ public class OrdemServicoDTO implements Serializable {
 	private Long id;
 	private String titulo;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataAbertura;
-	
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	private LocalDateTime dataFechamento;
 	
 	private Integer tipoServico;

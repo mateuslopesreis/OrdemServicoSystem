@@ -19,15 +19,15 @@ public enum Status {
 		return descricao;
 	}
 	
-	public static Status toEnum(Integer cod) {
-		if(cod==null) {
+	public static Status toEnum(Integer status) {
+		if(status==null) {
 			return null;
 		}
 		for(Status x : Status.values()) {
-			if(cod.equals(x.getCod())) {
+			if(status.equals(x.getCod())) {
 				return x;
 			}
 		}
-		throw new IllegalArgumentException("Status inválido"+cod);
+		throw new IllegalArgumentException("Status inválido"+status);
 	}
 }

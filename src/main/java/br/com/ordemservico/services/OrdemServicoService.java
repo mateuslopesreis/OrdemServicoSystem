@@ -1,5 +1,6 @@
 package br.com.ordemservico.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -12,6 +13,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.OrdemServicoDTO;
 import br.com.ordemservico.entities.OrdemServico;
+import br.com.ordemservico.enums.Prioridade;
+import br.com.ordemservico.enums.Status;
+import br.com.ordemservico.enums.TipoServico;
 import br.com.ordemservico.repositories.OrdemServicoRepository;
 import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;
@@ -44,16 +48,30 @@ public class OrdemServicoService {
 		entity.setTitulo(dto.getTitulo());
 	//	entity.setDataAbertura(dto.getDataAbertura());
 	//	entity.setDataFechamento(dto.getDataFechamento());
-		entity.setTipoServico(dto.getTipoServico());
-		entity.setPrioridade(dto.getPrioridade());
-		entity.setStatus(dto.getStatus());
+		entity.setTipoServico(TipoServico.toEnum(dto.getTipoServico().getCod()));  
+		entity.setPrioridade(Prioridade.toEnum(dto.getPrioridade().getCod()));   
+		entity.setStatus(Status.toEnum(dto.getStatus().getCod()));
 		entity.setCliente(dto.getCliente());
+		
+		
 		
 		
 		entity = repository.save(entity);
 		
 		return new OrdemServicoDTO(entity);
 	}
+	
+	//private OrdemServico fromDTO(OrdemServicoDTO obj) {
+	//	OrdemServico newObj = new OrdemServico();
+	//	newObj.setId(obj.getId());
+	//	newObj.setPrioridade(Prioridade.toEnum(obj.getPrioridade()));
+	//	if(newObj.getStatus().getCod().equals(2)) {
+	//		newObj.setDataFechamento(LocalDateTime.now());
+			
+	//	}
+	//	return repository.save(newObj);
+//	}
+	
 
 	@Transactional
 	public OrdemServicoDTO update(Long id, OrdemServicoDTO dto) {
@@ -64,10 +82,15 @@ public class OrdemServicoService {
 			entity.setTitulo(dto.getTitulo());
 			entity.setDataAbertura(dto.getDataAbertura());
 			entity.setDataFechamento(dto.getDataFechamento());
-			entity.setTipoServico(dto.getTipoServico());
-			entity.setPrioridade(dto.getPrioridade());
-			entity.setStatus(dto.getStatus());
+			entity.setTipoServico(TipoServico.toEnum(dto.getTipoServico().getCod()));  
+			entity.setPrioridade(Prioridade.toEnum(dto.getPrioridade().getCod()));   
+			entity.setStatus(Status.toEnum(dto.getStatus().getCod()));
 			entity.setCliente(dto.getCliente());
+			
+			if(entity.getStatus().getCod().equals(2)) {
+				entity.setDataFechamento(LocalDateTime.now());
+				
+			}
 			
 			entity = repository.save(entity);
 			return new OrdemServicoDTO(entity);

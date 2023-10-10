@@ -42,6 +42,7 @@ public class OrdemServico implements Serializable {
 	private Integer prioridade;
 	private Integer status;
 	
+	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
