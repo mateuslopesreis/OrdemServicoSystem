@@ -1,13 +1,19 @@
 package br.com.ordemservico.entities;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 import br.com.ordemservico.enums.Perfil;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -24,6 +30,13 @@ public class Funcionario implements Serializable {
 	private Integer perfil;
 	private String login;
 	private String senha;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_funcionario_role",
+			joinColumns = @JoinColumn(name = "funcionario_id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles = new HashSet<>();
+
 	
 	public Funcionario() {}
 
@@ -76,6 +89,11 @@ public class Funcionario implements Serializable {
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil.getCod();
 	}
+	
+	public Set<Role> getRoles() {
+		return roles;
+	}
+
 
 	public String getLogin() {
 		return login;

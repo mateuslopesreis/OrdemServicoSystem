@@ -1,6 +1,8 @@
 package br.com.ordemservico.dto;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 import br.com.ordemservico.entities.Funcionario;
 import br.com.ordemservico.enums.Perfil;
@@ -16,6 +18,9 @@ public class FuncionarioDTO implements Serializable {
 	private String login;
 	private String senha;
 	
+	private Set<RoleDTO> roles = new HashSet<>();
+
+	
 	public FuncionarioDTO() {}
 	
 	public FuncionarioDTO(Funcionario entity) { 
@@ -26,6 +31,9 @@ public class FuncionarioDTO implements Serializable {
 		this.perfil = entity.getPerfil().getCod();
 		this.login = entity.getLogin();
 		this.senha = entity.getSenha();
+		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+		
+		
 	}
 
 	public Long getId() {
@@ -68,6 +76,9 @@ public class FuncionarioDTO implements Serializable {
 		this.perfil = perfil.getCod();
 	}
 
+	public Set<RoleDTO> getRoles() {
+		return roles;
+	}	
 
 	public String getLogin() {
 		return login;
@@ -84,6 +95,7 @@ public class FuncionarioDTO implements Serializable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
 	
 
 }

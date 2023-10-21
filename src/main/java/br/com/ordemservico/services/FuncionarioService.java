@@ -4,15 +4,20 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.FuncionarioDTO;
+import br.com.ordemservico.dto.FuncionarioInsertDTO;
+import br.com.ordemservico.dto.RoleDTO;
 import br.com.ordemservico.entities.Funcionario;
+import br.com.ordemservico.entities.Role;
 import br.com.ordemservico.repositories.FuncionarioRepository;
+import br.com.ordemservico.repositories.RoleRepository;
 import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -23,6 +28,12 @@ public class FuncionarioService {
 	
 	@Autowired  //diz para o service se tem injeção de dependencia
 	private FuncionarioRepository repository; //injeção de depedencia para poder acessar o repository
+	
+	@Autowired
+	private RoleRepository roleRepository;
+
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 	
 	@Transactional(readOnly = true) 
 	
@@ -39,14 +50,11 @@ public class FuncionarioService {
 		return new FuncionarioDTO(entity);
 	}
 
-	public FuncionarioDTO insert(FuncionarioDTO dto) {
+	public FuncionarioDTO insert(FuncionarioInsertDTO dto) {
 		Funcionario entity = new Funcionario();
-		entity.setNome(dto.getNome());
-		entity.setEmail(dto.getEmail());
-		entity.setTelefone(dto.getTelefone());
-		entity.setPerfil(dto.getPerfil());
-		entity.setLogin(dto.getLogin());
-		entity.setSenha(dto.getSenha());
+		
+		copiarDTOParaEntidade(dto, entity);
+		entity.setSenha(passwordEncoder.encode(dto.getSenha()));
 		
 		entity = repository.save(entity);
 		
@@ -57,12 +65,7 @@ public class FuncionarioService {
 	public FuncionarioDTO update(Long id, FuncionarioDTO dto) {
 		try {
 			Funcionario entity = repository.getReferenceById(id);
-			entity.setNome(dto.getNome());
-			entity.setEmail(dto.getEmail());
-			entity.setTelefone(dto.getTelefone());
-			entity.setPerfil(dto.getPerfil());
-			entity.setLogin(dto.getLogin());
-			entity.setSenha(dto.getSenha());
+			copiarDTOParaEntidade(dto, entity);
 			
 			entity = repository.save(entity);
 			return new FuncionarioDTO(entity);
@@ -76,6 +79,21 @@ public class FuncionarioService {
 			repository.deleteById(id);
 		}catch(DataIntegrityViolationException e) {
 			throw new DataBaseException("Violação de Integridade");
+		}
+	}
+	
+	private void copiarDTOParaEntidade(FuncionarioDTO dto, Funcionario entity) {
+		entity.setNome(dto.getNome());
+		entity.setEmail(dto.getEmail());
+		entity.setTelefone(dto.getTelefone());
+		entity.setPerfil(dto.getPerfil());
+		entity.setLogin(dto.getLogin());
+		entity.setSenha(dto.getSenha());
+		
+		entity.getRoles().clear();
+		for(RoleDTO roleDTO : dto.getRoles()) {
+			Role role = roleRepository.getReferenceById(roleDTO.getId());
+			entity.getRoles().add(role);
 		}
 	}
 }

@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.com.ordemservico.dto.FuncionarioDTO;
+import br.com.ordemservico.dto.FuncionarioInsertDTO;
 import br.com.ordemservico.services.FuncionarioService;
 
 @RestController
@@ -44,15 +45,15 @@ public class FuncionarioResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<FuncionarioDTO> insert(@RequestBody FuncionarioDTO dto){
-		dto = service.insert(dto);
+	public ResponseEntity<FuncionarioDTO> insert(@RequestBody FuncionarioInsertDTO dto){
+		FuncionarioDTO funcionarioDTO = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
-				.buildAndExpand(dto.getId())
+				.buildAndExpand(funcionarioDTO.getId())
 				.toUri();
 		
-		return ResponseEntity.created(uri).body(null);
+		return ResponseEntity.created(uri).body(funcionarioDTO);
 
 	}
 	
