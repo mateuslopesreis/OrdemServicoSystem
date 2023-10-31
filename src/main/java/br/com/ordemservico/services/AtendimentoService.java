@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.AtendimentoDTO;
+import br.com.ordemservico.dto.AtendimentoStatusFechadoTecnicoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.OrdemServicoTecnicoAtendimentoDTO;
 import br.com.ordemservico.entities.Atendimento;
@@ -48,6 +49,12 @@ public class AtendimentoService {
 		return repository.findByStatusTecnicoSQL(status, nome);
 	}
 	
+	@Transactional(readOnly = true)
+	public List<AtendimentoStatusFechadoTecnicoDTO> findByStatusFechadoTecnicoSQL(int  status, String nome){
+		return repository.findByStatusFechadoTecnicoSQL(status, nome);
+	}
+	
+
 	
 	@Transactional(readOnly = true)
 	public List<OrdemServicoTecnicoAtendimentoDTO> findByTecnicoAtendimentoSQL(int  status){
