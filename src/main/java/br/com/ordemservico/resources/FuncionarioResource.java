@@ -18,6 +18,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.ordemservico.dto.FuncionarioDTO;
 import br.com.ordemservico.dto.FuncionarioInsertDTO;
 import br.com.ordemservico.services.FuncionarioService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping(value= "/funcionarios")
@@ -45,7 +46,7 @@ public class FuncionarioResource {
 	
 	
 	@PostMapping
-	public ResponseEntity<FuncionarioDTO> insert(@RequestBody FuncionarioInsertDTO dto){
+	public ResponseEntity<FuncionarioDTO> insert(@Valid @RequestBody FuncionarioInsertDTO dto){
 		FuncionarioDTO funcionarioDTO = service.insert(dto);
 		URI uri = ServletUriComponentsBuilder
 				.fromCurrentRequest()
@@ -58,7 +59,7 @@ public class FuncionarioResource {
 	}
 	
 	@PutMapping(value="/{id}")
-	public ResponseEntity<FuncionarioDTO> Update(@PathVariable Long id, @RequestBody FuncionarioDTO dto){
+	public ResponseEntity<FuncionarioDTO> Update(@PathVariable Long id, @Valid @RequestBody FuncionarioDTO dto){
 		dto = service.update(id, dto);
 		return ResponseEntity.ok().body(dto);
 	}

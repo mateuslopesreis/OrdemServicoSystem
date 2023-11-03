@@ -6,17 +6,23 @@ import java.util.Set;
 
 import br.com.ordemservico.entities.Funcionario;
 import br.com.ordemservico.enums.Perfil;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class FuncionarioDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	@Size(min = 5, max=100, message ="Deve ter entre 5 e 100 caracteres")
+	@NotBlank(message = "Campo obrigatório")
 	private String nome;
+	@Email(message="Entrar com um email válido")
 	private String email;
 	private String telefone;
 	private Integer perfil;
 	private String login;
-	private String senha;
+	
 	
 	private Set<RoleDTO> roles = new HashSet<>();
 
@@ -30,7 +36,6 @@ public class FuncionarioDTO implements Serializable {
 		this.telefone = entity.getTelefone();
 		this.perfil = entity.getPerfil().getCod();
 		this.login = entity.getLogin();
-		this.senha = entity.getSenha();
 		entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
 		
 		
@@ -88,13 +93,7 @@ public class FuncionarioDTO implements Serializable {
 		this.login = login;
 	}
 
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
+	
 	
 	
 

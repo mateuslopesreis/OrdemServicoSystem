@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.EquipamentoItemDTO;
 import br.com.ordemservico.entities.EquipamentoItem;
+import br.com.ordemservico.enums.Situacao;
 import br.com.ordemservico.repositories.EquipamentoItemRepository;
 import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;

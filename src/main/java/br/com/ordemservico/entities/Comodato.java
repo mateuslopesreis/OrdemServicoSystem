@@ -21,18 +21,24 @@ public class Comodato implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String dataInstalacao;
+	private String dataDevolucao;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_os_fk")
 	private OrdemServico os;
 	
+	@ManyToOne
+	@JoinColumn(name = "id_equipamento_item_fk")
+	private EquipamentoItem equipamentoItem;
+	
 	public Comodato() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comodato(Long id, String dataInstalacao) {
+	public Comodato(Long id, String dataInstalacao, String dataDevolucao) {
 		this.id = id;
 		this.dataInstalacao = dataInstalacao;
+		this.dataDevolucao = dataDevolucao;
 	}
 
 	public Long getId() {
@@ -58,6 +64,22 @@ public class Comodato implements Serializable {
 
 	public void setOs(OrdemServico os) {
 		this.os = os;
+	}
+
+	public String getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(String dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+
+	public EquipamentoItem getEquipamentoItem() {
+		return equipamentoItem;
+	}
+
+	public void setEquipamentoItem(EquipamentoItem equipamentoItem) {
+		this.equipamentoItem = equipamentoItem;
 	}
 
 	@Override

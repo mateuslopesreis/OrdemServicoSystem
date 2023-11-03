@@ -1,5 +1,6 @@
 package br.com.ordemservico.services;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.ordemservico.dto.ComodatoDTO;
+import br.com.ordemservico.dto.EquipamentoItemDTO;
 import br.com.ordemservico.entities.Comodato;
+import br.com.ordemservico.enums.Situacao;
 import br.com.ordemservico.repositories.ComodatoRepository;
 import br.com.ordemservico.services.exceptions.DataBaseException;
 import br.com.ordemservico.services.exceptions.ResourceNotFoundException;
@@ -42,8 +45,9 @@ public class ComodatoService {
 	public ComodatoDTO insert(ComodatoDTO dto) {
 		Comodato entity = new Comodato();
 		entity.setDataInstalacao(dto.getDataInstalacao());
+		entity.setDataDevolucao(dto.getDataDevolucao());
 		entity.setOs(dto.getOs());
-		
+		entity.setEquipamentoItem(dto.getEquipamentoItem());
 		
 		entity = repository.save(entity);
 		
@@ -56,7 +60,10 @@ public class ComodatoService {
 		try {
 			Comodato entity = repository.getReferenceById(id);
 			entity.setDataInstalacao(dto.getDataInstalacao());
+			entity.setDataDevolucao(dto.getDataDevolucao());
 			entity.setOs(dto.getOs());
+			entity.setEquipamentoItem(dto.getEquipamentoItem());
+				
 			
 			entity = repository.save(entity);
 			return new ComodatoDTO(entity);

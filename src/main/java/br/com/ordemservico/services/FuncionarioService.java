@@ -88,7 +88,7 @@ public class FuncionarioService {
 		entity.setTelefone(dto.getTelefone());
 		entity.setPerfil(dto.getPerfil());
 		entity.setLogin(dto.getLogin());
-		entity.setSenha(dto.getSenha());
+		
 		
 		entity.getRoles().clear();
 		for(RoleDTO roleDTO : dto.getRoles()) {
