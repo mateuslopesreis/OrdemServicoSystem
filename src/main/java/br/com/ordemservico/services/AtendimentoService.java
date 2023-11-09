@@ -12,7 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.ordemservico.dto.AtendimentoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusFechadoTecnicoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
+import br.com.ordemservico.dto.NumeroAtendimentoDTO;
 import br.com.ordemservico.dto.OrdemServicoTecnicoAtendimentoDTO;
+import br.com.ordemservico.dto.OrdemServicoTecnicoSemAtendimentoDTO;
+import br.com.ordemservico.dto.TipoServicoAtendimentosDTO;
 import br.com.ordemservico.entities.Atendimento;
 import br.com.ordemservico.repositories.AtendimentoRepository;
 import br.com.ordemservico.services.exceptions.DataBaseException;
@@ -60,6 +63,21 @@ public class AtendimentoService {
 	public List<OrdemServicoTecnicoAtendimentoDTO> findByTecnicoAtendimentoSQL(int  status){
 		return repository.findByTecnicoAtendimentoSQL(status);
 	}
+	
+	@Transactional(readOnly = true)
+	public List<OrdemServicoTecnicoSemAtendimentoDTO> findByTecnicoSemAtendimentoSQL(int  status){
+		return repository.findByTecnicoSemAtendimentoSQL(status);
+	}
+	
+	@Transactional(readOnly = true)
+	public List<NumeroAtendimentoDTO> findByNumeroAtendimentoSQL(String nome){
+		return repository.findByNumeroAtendimentoSQL(nome);
+	}
+	
+	//@Transactional(readOnly = true)
+	//public List<TipoServicoAtendimentosDTO>findByTipoServicoAtendimentosSQL(){
+	//	return repository.findByTipoServicoAtendimentosSQL();
+	//}
 	
 
 	public AtendimentoDTO insert(AtendimentoDTO dto) {

@@ -19,7 +19,10 @@ import br.com.ordemservico.dto.AtendimentoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusFechadoTecnicoDTO;
 import br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO;
 import br.com.ordemservico.dto.ClienteDTO;
+import br.com.ordemservico.dto.NumeroAtendimentoDTO;
 import br.com.ordemservico.dto.OrdemServicoTecnicoAtendimentoDTO;
+import br.com.ordemservico.dto.OrdemServicoTecnicoSemAtendimentoDTO;
+import br.com.ordemservico.dto.TipoServicoAtendimentosDTO;
 import br.com.ordemservico.services.AtendimentoService;
 
 @RestController
@@ -59,6 +62,23 @@ public class AtendimentoResource {
 		return ResponseEntity.ok().body(lista);
 	}
 	
+	@GetMapping(value = "/tecnicosematendimentosql/{status}")
+	public ResponseEntity<List<OrdemServicoTecnicoSemAtendimentoDTO>> findByTecnicoSemAtendimentoSQL(@PathVariable int status){
+		List<OrdemServicoTecnicoSemAtendimentoDTO> lista = service.findByTecnicoSemAtendimentoSQL(status);
+		return ResponseEntity.ok().body(lista);
+	}
+	
+	@GetMapping(value = "/numeroatendimentosql/{nome}")
+	public ResponseEntity<List<NumeroAtendimentoDTO>> findByNumeroAtendimentoSQL(@PathVariable String nome){
+		List<NumeroAtendimentoDTO> lista = service.findByNumeroAtendimentoSQL(nome);
+		return ResponseEntity.ok().body(lista);
+	}
+	
+//	@GetMapping(value = "/tiposervicoatendimentossql")
+//	public ResponseEntity<List<TipoServicoAtendimentosDTO>> findByTipoServicoAtendimentosSQL(){
+//		List<TipoServicoAtendimentosDTO> lista = service.findByTipoServicoAtendimentosSQL();
+//		return ResponseEntity.ok().body(lista);
+//	}
 	
 	
 	@PostMapping

@@ -1,6 +1,7 @@
 package br.com.ordemservico.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
@@ -20,7 +21,7 @@ public class Comodato implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String dataInstalacao;
+	private LocalDateTime dataInstalacao;
 	private String dataDevolucao;
 	
 	@ManyToOne
@@ -35,7 +36,7 @@ public class Comodato implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comodato(Long id, String dataInstalacao, String dataDevolucao) {
+	public Comodato(Long id, LocalDateTime dataInstalacao, String dataDevolucao) {
 		this.id = id;
 		this.dataInstalacao = dataInstalacao;
 		this.dataDevolucao = dataDevolucao;
@@ -49,11 +50,11 @@ public class Comodato implements Serializable {
 		this.id = id;
 	}
 
-	public String getDataInstalacao() {
+	public LocalDateTime getDataInstalacao() {
 		return dataInstalacao;
 	}
 
-	public void setDataInstalacao(String dataInstalacao) {
+	public void setDataInstalacao(LocalDateTime dataInstalacao) {
 		this.dataInstalacao = dataInstalacao;
 	}
 	
