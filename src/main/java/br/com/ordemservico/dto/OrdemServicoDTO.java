@@ -30,6 +30,7 @@ public class OrdemServicoDTO implements Serializable {
 	private Integer tipoServico;
 	private Integer prioridade;
 	private Integer status;
+	private String descricao;
 	private Cliente cliente;
 	
 	private List<Atendimento> atendimentos = new ArrayList<>(); 
@@ -42,7 +43,7 @@ public class OrdemServicoDTO implements Serializable {
 	
 	
 	public OrdemServicoDTO(Long id, String titulo, LocalDateTime dataAbertura, LocalDateTime dataFechamento,
-			Integer tipoServico, Integer prioridade, Integer status, Cliente cliente) {
+			Integer tipoServico, Integer prioridade, Integer status, String descricao, Cliente cliente) {
 		this.id = id;
 		this.titulo = titulo;
 		this.dataAbertura = dataAbertura;
@@ -50,6 +51,7 @@ public class OrdemServicoDTO implements Serializable {
 		this.tipoServico = tipoServico;
 		this.prioridade = prioridade;
 		this.status = status;
+		this.descricao = descricao;
 		this.cliente = cliente;
 	}
 
@@ -66,6 +68,7 @@ public class OrdemServicoDTO implements Serializable {
 		this.tipoServico = entity.getTipoServico().getCod();
 		this.prioridade = entity.getPrioridade().getCod();
 		this.status = entity.getStatus().getCod();
+		this.descricao = entity.getDescricao();
 		this.cliente = entity.getCliente();
 
 	}
@@ -141,6 +144,22 @@ public class OrdemServicoDTO implements Serializable {
 	public void setStatus(Status status) {
 		this.status = status.getCod();
 	}
+	
+	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+
+
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+
+
 
 	public Cliente getCliente() {
 		return cliente;

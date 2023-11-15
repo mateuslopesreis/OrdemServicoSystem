@@ -12,16 +12,18 @@ public class AtendimentoStatusTecnicoDTO  implements Serializable {
 	private Integer prioridade;
 	private String cliente;
 	private String nome;
+	private String descricao;
 	
 	
 	public AtendimentoStatusTecnicoDTO() {}
 
-	public AtendimentoStatusTecnicoDTO(Long id, String titulo, Integer prioridade, String cliente, String nome) {
+	public AtendimentoStatusTecnicoDTO(Long id, String titulo, Integer prioridade, String cliente, String nome, String descricao) {
 		this.id = id;
 		this.titulo = titulo;
 		this.cliente = cliente;
 		this.nome = nome;
 		this.prioridade = prioridade;
+		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -64,6 +66,16 @@ public class AtendimentoStatusTecnicoDTO  implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+	
+	
 	
 
 }

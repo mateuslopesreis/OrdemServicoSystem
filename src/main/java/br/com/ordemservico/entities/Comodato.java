@@ -21,7 +21,7 @@ public class Comodato implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private LocalDateTime dataInstalacao;
+	private String dataInstalacao;
 	private String dataDevolucao;
 	
 	@ManyToOne
@@ -36,7 +36,7 @@ public class Comodato implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Comodato(Long id, LocalDateTime dataInstalacao, String dataDevolucao) {
+	public Comodato(Long id, String dataInstalacao, String dataDevolucao) {
 		this.id = id;
 		this.dataInstalacao = dataInstalacao;
 		this.dataDevolucao = dataDevolucao;
@@ -50,11 +50,11 @@ public class Comodato implements Serializable {
 		this.id = id;
 	}
 
-	public LocalDateTime getDataInstalacao() {
+	public String getDataInstalacao() {
 		return dataInstalacao;
 	}
 
-	public void setDataInstalacao(LocalDateTime dataInstalacao) {
+	public void setDataInstalacao(String dataInstalacao) {
 		this.dataInstalacao = dataInstalacao;
 	}
 	

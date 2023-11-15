@@ -41,7 +41,7 @@ public class OrdemServico implements Serializable {
 	private Integer tipoServico;
 	private Integer prioridade;
 	private Integer status;
-	
+	private String descricao;
 	
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
@@ -59,13 +59,14 @@ public class OrdemServico implements Serializable {
 	}
 
 	public OrdemServico(Long id, String titulo, 
-			TipoServico tipoServico, Prioridade prioridade, Status status, Cliente cliente, List<Atendimento> atendimentos) {
+			TipoServico tipoServico, Prioridade prioridade, Status status, String descricao, Cliente cliente, List<Atendimento> atendimentos) {
 		this.id = id;
 		this.titulo = titulo;
 		this.setDataAbertura(LocalDateTime.now());
 		this.tipoServico = (tipoServico == null) ? 0 : tipoServico.getCod();
 		this.prioridade = (prioridade == null) ? 0 : prioridade.getCod();
 		this.status = (status == null) ? 0 : status.getCod();
+		this.descricao = descricao;
 		this.cliente = cliente;
 		this.atendimentos = atendimentos;
 	}
@@ -131,7 +132,14 @@ public class OrdemServico implements Serializable {
 		this.status = status.getCod();
 	}
 	
-	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 	public Cliente getCliente() {
 		return cliente;

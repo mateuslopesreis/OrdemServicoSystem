@@ -68,11 +68,11 @@ public class AtendimentoResource {
 		return ResponseEntity.ok().body(lista);
 	}
 	
-	@GetMapping(value = "/numeroatendimentosql/{nome}")
-	public ResponseEntity<List<NumeroAtendimentoDTO>> findByNumeroAtendimentoSQL(@PathVariable String nome){
-		List<NumeroAtendimentoDTO> lista = service.findByNumeroAtendimentoSQL(nome);
-		return ResponseEntity.ok().body(lista);
-	}
+//	@GetMapping(value = "/numeroatendimentosql")
+	//public ResponseEntity<List<NumeroAtendimentoDTO>> findByNumeroAtendimentoSQL(){
+		//List<NumeroAtendimentoDTO> lista = service.findByNumeroAtendimentoSQL();
+		//return ResponseEntity.ok().body(lista);
+//	}
 	
 //	@GetMapping(value = "/tiposervicoatendimentossql")
 //	public ResponseEntity<List<TipoServicoAtendimentosDTO>> findByTipoServicoAtendimentosSQL(){

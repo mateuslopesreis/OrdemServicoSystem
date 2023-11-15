@@ -70,9 +70,9 @@ public class AtendimentoService {
 	}
 	
 	@Transactional(readOnly = true)
-	public List<NumeroAtendimentoDTO> findByNumeroAtendimentoSQL(String nome){
-		return repository.findByNumeroAtendimentoSQL(nome);
-	}
+	//public List<NumeroAtendimentoDTO> findByNumeroAtendimentoSQL(){
+	//	return repository.findByNumeroAtendimentoSQL();
+	//}
 	
 	//@Transactional(readOnly = true)
 	//public List<TipoServicoAtendimentosDTO>findByTipoServicoAtendimentosSQL(){

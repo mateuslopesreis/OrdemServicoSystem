@@ -11,7 +11,7 @@ public class ComodatoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
-	private LocalDateTime dataInstalacao;
+	private String dataInstalacao;
 	private String dataDevolucao;
 	private OrdemServico os;
 	private EquipamentoItem equipamentoItem;
@@ -20,7 +20,7 @@ public class ComodatoDTO implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	 
-	 public ComodatoDTO(Long id, LocalDateTime dataInstalacao, String dataDevolucao, OrdemServico os,
+	 public ComodatoDTO(Long id, String dataInstalacao, String dataDevolucao, OrdemServico os,
 			 EquipamentoItem equipamentoItem) {
 			this.id = id;
 			this.dataInstalacao = dataInstalacao;
@@ -49,12 +49,12 @@ public class ComodatoDTO implements Serializable {
 	}
 
 
-	public LocalDateTime getDataInstalacao() {
+	public String getDataInstalacao() {
 		return dataInstalacao;
 	}
 
 
-	public void setDataInstalacao(LocalDateTime dataInstalacao) {
+	public void setDataInstalacao(String dataInstalacao) {
 		this.dataInstalacao = dataInstalacao;
 	}
 

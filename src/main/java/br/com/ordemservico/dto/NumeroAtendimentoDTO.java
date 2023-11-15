@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class NumeroAtendimentoDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	private Integer funcionario;
 	private String nome;
 	
 	
@@ -14,20 +14,20 @@ public class NumeroAtendimentoDTO implements Serializable {
 	}
 
 
-	public NumeroAtendimentoDTO(Integer id, String nome) {
+	public NumeroAtendimentoDTO(Integer funcionario, String nome) {
 		super();
-		this.id = id;
+		this.funcionario = funcionario;
 		this.nome = nome;
 	}
 
 
-	public Integer getId() {
-		return id;
+	public Integer getFuncionario() {
+		return funcionario;
 	}
 
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setFuncionario(Integer funcionario) {
+		this.funcionario = funcionario;
 	}
 
 

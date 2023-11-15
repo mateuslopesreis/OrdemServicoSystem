@@ -23,7 +23,7 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long> 
 //SELECT o.titulo, f.nome FROM tb_atendimento a, tb_ordem_servico o, tb_funcionario f WHERE a.id_os_fk = o.id AND a.id_funcionario_fk = f.id AND o.status= 0 AND f.nome= 'Sakuragi Hanamich';
 	//SELECT ei.numero_serie, e.marca FROM tb_equipamento_item ei, tb_equipamento e WHERE ei.id_equipamento_fk = e.id AND e.marca = 'Dellamed'
 		@Query("SELECT new br.com.ordemservico.dto.AtendimentoStatusTecnicoDTO("
-				+ "obj.os.id , obj.os.titulo, obj.os.prioridade, obj.os.cliente.nome, obj.funcionario.nome) "
+				+ "obj.os.id , obj.os.titulo, obj.os.prioridade, obj.os.cliente.nome, obj.funcionario.nome, obj.os.descricao) "
 				+ "FROM Atendimento obj "
 				+ "WHERE obj.os.status = :status AND obj.funcionario.nome = :nome")
 		List<AtendimentoStatusTecnicoDTO> findByStatusTecnicoSQL(int status, String nome);
@@ -57,12 +57,12 @@ public interface AtendimentoRepository extends JpaRepository<Atendimento, Long> 
 				//	FROM tecnicos t
 				//	LEFT JOIN atendimentos a ON t.id_tecnico = a.id_tecnico
 					//GROUP BY t.nome;
-					@Query("SELECT new br.com.ordemservico.dto.NumeroAtendimentoDTO(" +
-				            "obj.funcionario.nome, COUNT(obj.id)) " +
-				            "FROM Atendimento obj " +
-				            "WHERE obj.funcionario.nome = :nome " )
+				//	@Query("SELECT new br.com.ordemservico.dto.NumeroAtendimentoDTO" +
+				  //          "funcionario, COUNT(funcionario)) " +
+				    //        "FROM Atendimento " +
+				      //      "GROUP BY funcionario" )
 				     
-				    List<NumeroAtendimentoDTO> findByNumeroAtendimentoSQL(String nome);
+				  //  List<NumeroAtendimentoDTO> findByNumeroAtendimentoSQL();
 				
 
 					

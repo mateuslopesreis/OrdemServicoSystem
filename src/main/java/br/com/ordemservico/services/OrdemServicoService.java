@@ -51,6 +51,7 @@ public class OrdemServicoService {
 		entity.setTipoServico(TipoServico.toEnum(dto.getTipoServico().getCod()));  
 		entity.setPrioridade(Prioridade.toEnum(dto.getPrioridade().getCod()));   
 		entity.setStatus(Status.toEnum(dto.getStatus().getCod()));
+		entity.setDescricao(dto.getDescricao());
 		entity.setCliente(dto.getCliente());
 		
 		
@@ -85,6 +86,7 @@ public class OrdemServicoService {
 			entity.setTipoServico(TipoServico.toEnum(dto.getTipoServico().getCod()));  
 			entity.setPrioridade(Prioridade.toEnum(dto.getPrioridade().getCod()));   
 			entity.setStatus(Status.toEnum(dto.getStatus().getCod()));
+			entity.setDescricao(dto.getDescricao());
 			entity.setCliente(dto.getCliente());
 			
 			if(entity.getStatus().getCod().equals(2)) {

@@ -59,11 +59,16 @@ public class ComodatoService {
 		
 		try {
 			Comodato entity = repository.getReferenceById(id);
+			
+			if(org.springframework.util.StringUtils.hasText(dto.getDataDevolucao())) {
+				entity.getEquipamentoItem().setSituacao(Situacao.DISPONIVEL);
+			} else {
+			
 			entity.setDataInstalacao(dto.getDataInstalacao());
 			entity.setDataDevolucao(dto.getDataDevolucao());
 			entity.setOs(dto.getOs());
 			entity.setEquipamentoItem(dto.getEquipamentoItem());
-				
+			}
 			
 			entity = repository.save(entity);
 			return new ComodatoDTO(entity);
